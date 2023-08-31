@@ -1,2 +1,2 @@
-# SeleniumPython
-Automation with Selenium Python
+# OrangeHRMSeleniumPython
+Automation test with Selenium Python
