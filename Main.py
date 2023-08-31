@@ -3,6 +3,7 @@ import unittest
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
+import log
 
 
 options = webdriver.ChromeOptions()
@@ -20,8 +21,7 @@ class Login(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get(self.url)
         self.driver.implicitly_wait(5)
-        self.driver.find_element(By.NAME,'username').send_keys('Admin')
-        self.driver.find_element(By.NAME,'password').send_keys('admin123' + Keys.RETURN)
+        log.test_user(self.driver)
         time.sleep(3)
         assert 'OrangeHRM' in self.driver.title
         
@@ -58,51 +58,30 @@ class Menu(unittest.TestCase):
         
     def setUp(self):
         self.driver = webdriver.Chrome(options = options)
-        self.url = 'https://opensource-demo.orangehrmlive.com/'
     
     def test_Menu_Admin(self):
-        self.driver.maximize_window()
-        self.driver.get(self.url)
-        self.driver.implicitly_wait(5)
-        self.driver.find_element(By.NAME,'username').send_keys('Admin')
-        self.driver.find_element(By.NAME,'password').send_keys('admin123' + Keys.RETURN)
-        time.sleep(3)
+        log.test_login(self.driver)
         self.driver.find_element(By.XPATH,'//a[@href="/web/index.php/admin/viewAdminModule"]').click()
         time.sleep(3)
         management = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6[2]').text
         self.assertIn('User Management', management)
 
     def test_Menu_PIM(self):
-        self.driver.maximize_window()
-        self.driver.get(self.url)
-        self.driver.implicitly_wait(5)
-        self.driver.find_element(By.NAME,'username').send_keys('Admin')
-        self.driver.find_element(By.NAME,'password').send_keys('admin123' + Keys.RETURN)
-        time.sleep(3)
+        log.test_login(self.driver)
         self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
         time.sleep(3)
         PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
         self.assertIn('PIM', PIM)
 
     def test_Menu_MyInfo(self):
-        self.driver.maximize_window()
-        self.driver.get(self.url)
-        self.driver.implicitly_wait(5)
-        self.driver.find_element(By.NAME,'username').send_keys('Admin')
-        self.driver.find_element(By.NAME,'password').send_keys('admin123' + Keys.RETURN)
-        time.sleep(3)
+        log.test_login(self.driver)
         self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
         time.sleep(3)
         PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
         self.assertIn('PIM', PIM)
 
     def test_Menu_Maintenance(self):
-        self.driver.maximize_window()
-        self.driver.get(self.url)
-        self.driver.implicitly_wait(5)
-        self.driver.find_element(By.NAME,'username').send_keys('Admin')
-        self.driver.find_element(By.NAME,'password').send_keys('admin123' + Keys.RETURN)
-        time.sleep(3)
+        log.test_login(self.driver)
         self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
         time.sleep(3)
         PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
