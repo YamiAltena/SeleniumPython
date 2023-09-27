@@ -14,5 +14,4 @@ def test_login(driver):
     test_user(driver)
     time.sleep(3)
 
-    
 

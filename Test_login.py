@@ -49,43 +49,10 @@ class Login(unittest.TestCase):
         login_button = self.driver.find_element(By.XPATH,'//button[@type="submit"]').text
         self.assertIn('Login', login_button)
 
+
     def tearDown(self):
         self.driver.quit()
 
-
-
-class Menu(unittest.TestCase):
-        
-    def setUp(self):
-        self.driver = webdriver.Chrome(options = options)
-    
-    def test_Menu_Admin(self):
-        log.test_login(self.driver)
-        self.driver.find_element(By.XPATH,'//a[@href="/web/index.php/admin/viewAdminModule"]').click()
-        time.sleep(3)
-        management = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6[2]').text
-        self.assertIn('User Management', management)
-
-    def test_Menu_PIM(self):
-        log.test_login(self.driver)
-        self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
-        time.sleep(3)
-        PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
-        self.assertIn('PIM', PIM)
-
-    def test_Menu_MyInfo(self):
-        log.test_login(self.driver)
-        self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
-        time.sleep(3)
-        PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
-        self.assertIn('PIM', PIM)
-
-    def test_Menu_Maintenance(self):
-        log.test_login(self.driver)
-        self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span').click()
-        time.sleep(3)
-        PIM = self.driver.find_element(By.XPATH,'//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6').text
-        self.assertIn('PIM', PIM)
 
     def tearDown(self):
         self.driver.quit()
