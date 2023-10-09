@@ -3,7 +3,7 @@ import unittest
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
-import log
+from ObjectPages import log
 
 
 options = webdriver.ChromeOptions()
