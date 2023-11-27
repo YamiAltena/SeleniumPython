@@ -49,7 +49,7 @@ class example(unittest.TestCase):
                 WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH,'/html/body/div[1]/div')))
                 print('pop up muncul')
                 self.driver.find_element('class name','btn-modal-close').click()
-                print('pop up berhasil di close')
+                print('pop up berhasil ditutup')
             except TimeoutException:
                 print('pop up tidak ada')
                 pass
