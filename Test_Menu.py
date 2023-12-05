@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 import time
 from ObjectPages import log
 from ObjectPages.MenuPage import MenuPage
-
+from ObjectPages.MenuPage import Assert
 
 
 options = webdriver.ChromeOptions()
@@ -13,11 +13,6 @@ options.add_argument('--disable-notifications')
 
 
 class Menu(unittest.TestCase):
-            
-    Management_XPATH = '//*[@id="app"]/div[1]/div[1]/header/div[1]/div[1]/span/h6[2]'
-    Information_XPATH = '/html/body/div/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5'
-    Personal_XPATH = '/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/h6'
-    Claim_XPATH = '/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6'
     
     def setUp(self):
         self.driver = webdriver.Chrome(options = options)
@@ -26,7 +21,7 @@ class Menu(unittest.TestCase):
         log.test_login(self.driver)
         MenuPage.Menu_Admin(self.driver)
         time.sleep(3)
-        Management = self.driver.find_element(By.XPATH, self.Management_XPATH).text
+        Management = Assert.Teks_Admin(self.driver)
         self.assertIn('User Management', Management)
         print("Successfully go to Menu Admin")
 
@@ -34,7 +29,7 @@ class Menu(unittest.TestCase):
         log.test_login(self.driver)
         MenuPage.Menu_PIM(self.driver)
         time.sleep(3)
-        Information = self.driver.find_element(By.XPATH, self.Information_XPATH).text
+        Information = Assert.Teks_Information(self.driver)
         self.assertIn('Employee Information', Information)
         print("Successfully go to Menu PIM")
 
@@ -42,7 +37,7 @@ class Menu(unittest.TestCase):
         log.test_login(self.driver)
         MenuPage.Menu_Myinfo(self.driver)
         time.sleep(3)
-        Personal = self.driver.find_element(By.XPATH, self.Personal_XPATH).text
+        Personal = Assert.Teks_Personal(self.driver)
         self.assertIn('Personal Details', Personal)
         print("Successfully go to Menu My Info")
 
@@ -50,13 +45,12 @@ class Menu(unittest.TestCase):
         log.test_login(self.driver)
         MenuPage.Menu_Claim(self.driver)
         time.sleep(3)
-        Claim = self.driver.find_element(By.XPATH, self.Claim_XPATH).text
+        Claim = Assert.Teks_Claim(self.driver)
         self.assertIn('Claim', Claim)
         print("Successfully go to Menu Claim")
 
     def tearDown(self):
         self.driver.quit()
-
     
 if __name__ == '__main__':
     unittest.main() 

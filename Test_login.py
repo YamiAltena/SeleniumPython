@@ -5,14 +5,12 @@ from selenium.webdriver.common.by import By
 import time
 from ObjectPages import log
 
-
 options = webdriver.ChromeOptions()
 options.add_experimental_option('detach', True)
 options.add_argument('--disable-notifications')
 
 
 class Login(unittest.TestCase):
-
   
     def setUp(self):
         self.driver = webdriver.Chrome(options = options)
@@ -44,7 +42,6 @@ class Login(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
-    
+ 
 if __name__ == '__main__':
     unittest.main() 
