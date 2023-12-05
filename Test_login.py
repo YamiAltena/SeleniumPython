@@ -13,6 +13,7 @@ options.add_argument('--disable-notifications')
 
 class Login(unittest.TestCase):
 
+  
     def setUp(self):
         self.driver = webdriver.Chrome(options = options)
 
@@ -28,7 +29,7 @@ class Login(unittest.TestCase):
         self.driver.implicitly_wait(5)
         log.test_user_WrongPass(self.driver)
         time.sleep(3)
-        invalid = self.driver.find_element(By.ID,'app').text
+        invalid = log.Teks_Invalid(self.driver)
         self.assertIn('Invalid credentials', invalid)
     
     def test_logout(self):
@@ -38,7 +39,7 @@ class Login(unittest.TestCase):
         time.sleep(3)
         log.logout(self.driver)
         time.sleep(5)    
-        login_button = self.driver.find_element(By.XPATH,'//button[@type="submit"]').text
+        login_button = log.Button(self.driver)
         self.assertIn('Login', login_button)
 
     def tearDown(self):
