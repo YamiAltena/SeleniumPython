@@ -21,13 +21,14 @@ def test_user_WrongPass(driver):
         
 def logout(driver):
     driver.find_element(By.CLASS_NAME,"oxd-userdropdown").click()
-    driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/header/div[1]/div[2]/ul/li/ul/li[4]/a").click()
+    driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/ul/li[4]/a").click() 
 
 def Teks_Invalid(driver):
     return driver.find_element(By.ID,'app').text
     
 def Button(driver):  
     return driver.find_element(By.XPATH,'//button[@type="submit"]').text
+
 
 
 

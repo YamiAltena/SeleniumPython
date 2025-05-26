@@ -20,6 +20,7 @@ class Login(unittest.TestCase):
         log.test_user(self.driver)
         time.sleep(3)
         assert 'OrangeHRM' in self.driver.title
+        print('Successfully Login')
         
     def test_login_FAILED_WrongPassword(self):
         self.driver.implicitly_wait(5)
@@ -27,6 +28,7 @@ class Login(unittest.TestCase):
         time.sleep(3)
         invalid = log.Teks_Invalid(self.driver)
         self.assertIn('Invalid credentials', invalid)
+        print ('Successfully Failed Login')
     
     def test_logout(self):
         self.driver.implicitly_wait(5)
@@ -36,6 +38,7 @@ class Login(unittest.TestCase):
         time.sleep(5)    
         login_button = log.Button(self.driver)
         self.assertIn('Login', login_button)
+        print('Successfully Logout')
 
     def tearDown(self):
         self.driver.quit()

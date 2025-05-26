@@ -16,7 +16,7 @@ import pyautogui
 options = webdriver.ChromeOptions()
 options.add_experimental_option('detach', True)
 options.add_argument('--disable-notifications')
-# tanpa membuka browser                     
+# without open browser                     
 #options.headless = True
 
 
@@ -24,22 +24,24 @@ class example(unittest.TestCase):
  
     def setUp(self):
         self.driver = webdriver.Chrome(options = options)
+        self.driver.maximize_window()
     
     def test_move_to_element(self):
         self.driver.maximize_window()
         self.driver.get('https://www.canva.com/')
-        ActionChains(self.driver).move_to_element(self.driver.find_element(By.XPATH,'//*[@id=":R4kjr:"]/span/div')).perform()
+        ActionChains(self.driver).move_to_element(self.driver.find_element(By.XPATH,'//*[@id=":Rd94r:"]')).perform()
         time.sleep(3)
-        self.driver.find_element(By.XPATH,'//*[@id=":R4kjrH1:"]/div/div/div/div/div[1]/ul/li[2]/ul/li[3]/a/div').click()
+        self.driver.find_element(By.XPATH,'//*[@id=":Rd94rH1:"]/div/div/div/div/div[1]/ul/li[3]/a/div[2]/div/p/span').click()
         time.sleep(10)
-        assert 'Social Media Marketing & Design Tools for Agencies | Canva' in self.driver.title
+        assert 'Teaching Tools and Free Resources for Educators' in self.driver.title
+        print ('Successfully Move to Element')
 
     def test_explicty_wait(self):
         self.driver.get('https://demoqa.com/alerts')
         self.driver.find_element('id','timerAlertButton').click()
         WebDriverWait(self.driver, 10).until(EC.alert_is_present())
         self.driver.switch_to.alert.accept()
-        print('berhasil terpencet')
+        print('Successfully Clicked')
         time.sleep(3)
 
     def test_PopUpHandle(self):
@@ -47,11 +49,11 @@ class example(unittest.TestCase):
             self.driver.get('https://tees.co.id/')
             try:  
                 WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH,'/html/body/div[1]/div')))
-                print('pop up muncul')
+                print('pop up displayed')
                 self.driver.find_element('class name','btn-modal-close').click()
-                print('pop up berhasil ditutup')
+                print('pop up successfully closed')
             except TimeoutException:
-                print('pop up tidak ada')
+                print('no pop up')
                 pass
     
     def test_UploadFile(self):
@@ -66,6 +68,7 @@ class example(unittest.TestCase):
         pyautogui.write(r'C:\Users\Raka\Pictures\friends.jpg')
         pyautogui.press('enter')
         time.sleep(3)
+        print('Successfully Upload File')
 
     def test_DemoQAandJQuery(self):
         #DemoQA
@@ -76,7 +79,7 @@ class example(unittest.TestCase):
         self.driver.get('https://demoqa.com/date-picker')
         self.driver.find_element('id','datePickerMonthYearInput').click()
         pyautogui.press('BACKSPACE', presses = 10)
-        pyautogui.typewrite('03/19/2023')
+        pyautogui.typewrite('03/19/2028')
         pyautogui.press('ENTER')
         time.sleep(3)
         #JQuery
@@ -84,7 +87,7 @@ class example(unittest.TestCase):
         self.driver.switch_to.frame(self.driver.find_element(By.XPATH,'//*[@id="content"]/iframe'))
         self.driver.find_element('id','datepicker').send_keys('19', Keys.ENTER)
         time.sleep(3)
-
+        print('Successfully testing')
 
     def tearDown(self):
         self.driver.quit()
